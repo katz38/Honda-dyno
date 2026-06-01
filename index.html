@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#050505">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Civic Dyno">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="Dyno GPS Honda Civic FN1 1.8 i-VTEC et 2.2 i-CTDi par Dams Reprog">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Civic FN1 Dyno - Dams Reprog</title>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <button class="ghost">☰</button>
+      <div class="logo">CIVIC <span>DYNO FN1</span></div>
+      <span id="gpsStatus" class="gps-ready">GPS prêt</span>
+    </header>
+
+    <main>
+      <section id="home" class="screen active">
+        <div class="hero">
+          <h1>Honda Civic <span>FN1</span></h1>
+          <p class="subtitle">1.8 i-VTEC & 2.2 i-CTDi</p>
+          <p>Mesurez, comparez et améliorez vos performances avec un dyno GPS prêt pour mobile.</p>
+          <div class="car-visual">🚗</div>
+          <button class="primary" onclick="showScreen('newrun')">Nouveau run ▶</button>
+          <button class="secondary" onclick="showScreen('history')">Voir l’historique ☷</button>
+          <div class="selected card">
+            <div class="icon">🚗</div>
+            <div>
+              <small>Véhicule sélectionné</small>
+              <strong id="homeCar">Civic FN1 2.2 i-CTDi</strong>
+              <span id="homeSpecs">140 ch / 340 Nm</span>
+            </div>
+            <button class="mini" onclick="showScreen('models')">Changer</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="newrun" class="screen">
+        <h2>Nouveau run</h2>
+        <div class="card">
+          <h3>Véhicule</h3>
+          <label>Modèle
+            <select id="carSelect"></select>
+          </label>
+          <label>Carburant
+            <input id="fuel" readonly>
+          </label>
+        </div>
+        <div class="card">
+          <h3>Conditions</h3>
+          <label>Température extérieure °C
+            <input id="temp" type="number" value="18">
+          </label>
+          <label>Pression hPa
+            <input id="pressure" type="number" value="1013">
+          </label>
+          <label>Altitude m
+            <input id="altitude" type="number" value="120">
+          </label>
+        </div>
+        <button class="primary" onclick="startRun()">Démarrer le run ▶</button>
+      </section>
+
+      <section id="run" class="screen">
+        <div class="run-head">
+          <h2>Run en cours</h2>
+          <span class="recording">● Enregistrement</span>
+        </div>
+        <div class="speed">
+          <span id="speed">0</span>
+          <small>km/h</small>
+          <b>GPS</b>
+        </div>
+        <div class="metrics">
+          <div class="metric"><small>Puissance</small><strong id="hp">--</strong><span>ch</span></div>
+          <div class="metric"><small>Couple</small><strong id="torque">--</strong><span>Nm</span></div>
+          <div class="metric"><small>0-100 km/h</small><strong id="t0100">--</strong><span>s</span></div>
+          <div class="metric"><small>0-400 m</small><strong id="t400live">--</strong><span>s</span></div>
+        </div>
+        <button class="danger" onclick="stopRun()">Arrêter le run</button>
+      </section>
+
+      <section id="results" class="screen">
+        <h2>Résultats du run</h2>
+        <div class="card selected">
+          <div class="icon">🚗</div>
+          <div>
+            <small id="resultDate">Aujourd’hui</small>
+            <strong id="resultCar">Civic FN1 2.2 i-CTDi</strong>
+            <span id="resultSpecs">140 ch</span>
+          </div>
+        </div>
+        <div class="metrics">
+          <div class="metric"><small>Puissance max</small><strong id="bestHp">--</strong><span>ch</span></div>
+          <div class="metric"><small>Couple max</small><strong id="bestTorque">--</strong><span>Nm</span></div>
+          <div class="metric"><small>Vitesse max</small><strong id="maxSpeed">--</strong><span>km/h</span></div>
+          <div class="metric"><small>0-100 km/h</small><strong id="t0100r">--</strong><span>s</span></div>
+          <div class="metric"><small>0-400 m</small><strong id="t400">--</strong><span>s</span></div>
+          <div class="metric"><small>0-1000 m</small><strong id="t1000">--</strong><span>s</span></div>
+        </div>
+        <div class="actions">
+          <button class="secondary" onclick="showScreen('graphs')">Voir graphiques</button>
+          <button class="primary" onclick="saveRun()">Enregistrer</button>
+        </div>
+      </section>
+
+      <section id="graphs" class="screen">
+        <h2>Graphiques</h2>
+        <div class="card">
+          <canvas id="chart" width="900" height="360"></canvas>
+        </div>
+        <div class="metrics">
+          <div class="metric"><small>Puissance max</small><strong id="graphHp">--</strong><span>ch</span></div>
+          <div class="metric"><small>Couple max</small><strong id="graphTorque">--</strong><span>Nm</span></div>
+        </div>
+      </section>
+
+      <section id="history" class="screen">
+        <h2>Historique</h2>
+        <div id="historyList" class="card"></div>
+      </section>
+
+      <section id="compare" class="screen">
+        <h2>Comparaison</h2>
+        <div class="card">
+          <canvas id="compareChart" width="900" height="360"></canvas>
+        </div>
+        <div id="compareList" class="card"></div>
+      </section>
+
+      <section id="models" class="screen">
+        <h2>Modèles Civic FN1</h2>
+        <div id="modelList" class="card"></div>
+        <div class="card">
+          <h3>Réglages</h3>
+          <label>Poids conducteur + carburant + bagages
+            <input id="driverMass" type="number" value="90">
+          </label>
+          <label>Masse totale calculée
+            <input id="totalMass" type="number" value="1460">
+          </label>
+          <label>Vitesse au rupteur sur le rapport utilisé
+            <input id="gearTopSpeed" type="number" value="145">
+          </label>
+        </div>
+      </section>
+
+      <section id="about" class="screen">
+        <h2>À propos</h2>
+        <div class="card about">
+          <div class="big-logo">CIVIC <span>DYNO FN1</span></div>
+          <p>Application de mesure de performances pour Honda Civic FN1 1.8 i-VTEC et 2.2 i-CTDi.</p>
+          <p>Développé pour Dams Reprog.</p>
+          <a class="primary link" href="https://damsreprog.fr" target="_blank">Ouvrir damsreprog.fr</a>
+          <p class="warning">Utilisation uniquement sur route privée ou fermée. Les valeurs sont des estimations GPS.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <nav class="tabs">
+    <button class="tab active" data-screen="home" onclick="showScreen('home')">⌂<span>Accueil</span></button>
+    <button class="tab" data-screen="history" onclick="showScreen('history')">◷<span>Historique</span></button>
+    <button class="tab" data-screen="compare" onclick="showScreen('compare')">⌁<span>Comparer</span></button>
+    <button class="tab" data-screen="models" onclick="showScreen('models')">▰<span>Modèles</span></button>
+    <button class="tab" data-screen="about" onclick="showScreen('about')">ⓘ<span>À propos</span></button>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+</html>
