@@ -1,11 +1,10 @@
 {
-  "name": "Civic FN1 Dyno V2 - Dams Reprog",
-  "short_name": "Civic Dyno",
+  "name": "Dams Reprog Honda Dyno Stage 2",
+  "short_name": "Honda Dyno",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
-  "description": "Dyno GPS pour Honda Civic FN1 1.8 i-VTEC et 2.2 i-CTDi",
+  "theme_color": "#050505",
+  "background_color": "#050505",
   "icons": [
     {
       "src": "icon-192.png",

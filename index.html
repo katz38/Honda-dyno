@@ -1,179 +1,72 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#050505">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Civic Dyno">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="description" content="Dyno GPS Honda Civic FN1 1.8 i-VTEC et 2.2 i-CTDi par Dams Reprog">
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="icon" href="favicon.png">
-  <link rel="stylesheet" href="style.css">
-  <title>Civic FN1 Dyno - Dams Reprog</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Honda Dyno">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Dams Reprog - Honda Dyno Stage 2</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#2b0b0b,#050505 48%,#000);color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}body:before{content:"DAMS REPROG HONDA";position:fixed;right:-10vw;bottom:8vh;font-size:9vw;font-weight:1000;color:rgba(255,255,255,.035);transform:rotate(-18deg);pointer-events:none}.app{max-width:1280px;margin:auto;padding:14px 14px 90px;position:relative}.top,.panel,.stat,.box{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.1);border-radius:22px;box-shadow:0 18px 55px rgba(0,0,0,.35)}.top{display:flex;justify-content:space-between;align-items:center;padding:16px}.logo{font-size:28px;font-weight:1000;font-style:italic}.logo span{color:#ef4444}.tag{color:#cbd5e1;font-size:12px;letter-spacing:.16em;text-transform:uppercase}.status{color:#22c55e;font-weight:900}.nav{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:12px 0;position:sticky;top:0;background:rgba(5,5,5,.9);backdrop-filter:blur(10px);z-index:10;padding:8px 0}.nav button{border:1px solid rgba(255,255,255,.1);background:#111;color:#d1d5db;border-radius:14px;padding:12px;font-weight:900}.nav button.active{background:#dc2626;color:#fff}.page{display:none}.page.active{display:block}.panel{padding:18px;margin:12px 0}.hero{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}.hero h1{font-size:42px;margin:0}.hero h1 span{color:#ef4444}.car{font-size:112px;opacity:.25;filter:grayscale(1)}p{color:#cbd5e1;line-height:1.35}.notice{background:#451a03;border:1px solid #f59e0b;color:#ffedd5;border-radius:16px;padding:13px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.grid2{display:grid;grid-template-columns:1fr 340px;gap:14px}.stat{padding:16px;text-align:center;background:#080808}.stat small{display:block;color:#cbd5e1;text-transform:uppercase;font-size:11px}.stat b{display:block;font-size:30px;margin-top:8px}.green{color:#22c55e!important}.red{color:#ef4444!important}.blue{color:#60a5fa!important}label{font-size:13px;color:#d1d5db;font-weight:900;display:block}select,input{width:100%;margin-top:7px;background:#050505;border:1px solid rgba(255,255,255,.14);color:#fff;border-radius:14px;padding:13px;font-size:16px}.optionGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.opt{background:#050505;border:2px solid rgba(255,255,255,.13);border-radius:18px;padding:15px;text-align:center;cursor:pointer}.opt.active{border-color:#ef4444;background:rgba(239,68,68,.15)}.opt b{display:block;font-size:16px}.opt small{color:#cbd5e1}button.primary,button.secondary,button.danger{border:0;border-radius:14px;color:#fff;padding:14px;font-weight:1000;font-size:15px;width:100%}.primary{background:#dc2626}.secondary{background:#334155}.danger{background:#991b1b}.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}canvas{width:100%;height:390px;background:#050505;border:1px solid rgba(255,255,255,.1);border-radius:18px}.box{background:#080808;border-radius:16px;padding:14px;margin-bottom:10px}.box h3{margin:0 0 10px;text-align:center;color:#ef4444}.box.after h3{color:#22c55e}.line{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid rgba(255,255,255,.08);padding:8px 0}.line:last-child{border-bottom:0}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid rgba(255,255,255,.08);padding:11px;text-align:left}th{color:#cbd5e1;font-size:12px}.site{display:block;text-align:center;background:white;color:#050505;text-decoration:none;font-weight:1000;border-radius:14px;padding:14px;margin-top:12px}@media(max-width:820px){.hero,.grid2,.grid3,.grid4,.actions,.optionGrid{grid-template-columns:1fr}.nav{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:32px}.car{font-size:82px}}
+</style>
 </head>
 <body>
-  <div class="app">
-    <header class="topbar">
-      <button class="ghost">☰</button>
-      <div class="logo">CIVIC <span>DYNO FN1</span></div>
-      <span id="gpsStatus" class="gps-ready">GPS prêt</span>
-    </header>
+<div class="app">
+<header class="top"><div><div class="logo">DAMS <span>REPROG</span></div><div class="tag">Honda dyno optimisation</div></div><div id="gpsStatus" class="status">GPS prêt</div></header>
+<nav class="nav"><button class="active" onclick="go('home',this)">Accueil</button><button onclick="go('test',this)">Dyno GPS</button><button onclick="go('compare',this)">Avant/Après</button><button onclick="go('stats',this)">Moyennes</button><button onclick="go('reports',this)">Rapports</button><button onclick="go('settings',this)">Réglages</button></nav>
 
-    <main>
-      <section id="home" class="screen active">
-        <div class="hero">
-          <h1>Honda Civic <span>FN1</span></h1>
-          <p class="subtitle">1.8 i-VTEC & 2.2 i-CTDi</p>
-          <p>Mesurez, comparez et améliorez vos performances avec un dyno GPS prêt pour mobile.</p>
-          <div class="car-visual">🚗</div>
-          <button class="primary" onclick="showScreen('newrun')">Nouveau run ▶</button>
-          <button class="secondary" onclick="showScreen('history')">Voir l’historique ☷</button>
-          <div class="selected card">
-            <div class="icon">🚗</div>
-            <div>
-              <small>Véhicule sélectionné</small>
-              <strong id="homeCar">Civic FN1 2.2 i-CTDi</strong>
-              <span id="homeSpecs">140 ch / 340 Nm</span>
-            </div>
-            <button class="mini" onclick="showScreen('models')">Changer</button>
-          </div>
-        </div>
-      </section>
+<section id="home" class="page active">
+<div class="panel hero"><div><h1>HONDA DYNO <span>STAGE 2</span></h1><p>Web app dyno GPS avec courbes puissance/couple avant et après reprogrammation, Stage 1, Stage 2, E85, cata et décata.</p></div><div class="car">🚗</div></div>
+<div class="grid4"><div class="stat"><small>Gain puissance</small><b id="homeGainHp" class="green">-- ch</b></div><div class="stat"><small>Gain couple</small><b id="homeGainTq" class="green">-- Nm</b></div><div class="stat"><small>Gain Vmax</small><b id="homeGainV" class="green">-- km/h</b></div><div class="stat"><small>Gain 0-100</small><b id="homeGain100" class="green">-- s</b></div></div>
+<div class="panel"><h2>Courbes dyno avant / après</h2><div class="grid3"><label>Modèle<select id="mainModel" onchange="renderAll()"></select></label><label>Configuration<select id="mainConfig" onchange="renderAll()"></select></label><label>Affichage<select><option>Puissance + couple</option></select></label></div><div class="grid2" style="margin-top:14px"><canvas id="chart" width="900" height="420"></canvas><div><div class="box"><h3>AVANT REPROG</h3><div id="beforeBox"></div></div><div class="box after"><h3>APRÈS REPROG</h3><div id="afterBox"></div></div><div class="box after"><h3>GAINS</h3><div id="gainBox"></div></div></div></div></div>
+</section>
 
-      <section id="newrun" class="screen">
-        <h2>Nouveau run</h2>
-        <div class="card">
-          <h3>Véhicule</h3>
-          <label>Modèle
-            <select id="carSelect"></select>
-          </label>
-          <label>Carburant
-            <input id="fuel" readonly>
-          </label>
-        </div>
-        <div class="card">
-          <h3>Conditions</h3>
-          <label>Température extérieure °C
-            <input id="temp" type="number" value="18">
-          </label>
-          <label>Pression hPa
-            <input id="pressure" type="number" value="1013">
-          </label>
-          <label>Altitude m
-            <input id="altitude" type="number" value="120">
-          </label>
-        </div>
-        <button class="primary" onclick="startRun()">Démarrer le run ▶</button>
-      </section>
+<section id="test" class="page"><div class="panel"><h1>Dyno GPS Honda</h1><div class="notice">À utiliser uniquement sur route privée ou fermée. Les valeurs sont des estimations GPS.</div><div class="grid3"><label>Modèle<select id="testModel"></select></label><label>Type de mesure<select id="testType"><option value="before">AVANT REPROG</option><option value="after">APRÈS REPROG</option></select></label><label>Client / pseudo<input id="client" placeholder="Client ou pseudo"></label><label>Commentaire<input id="comment" placeholder="Stage 2, E85, décata..."></label><label>Masse totale kg<input id="mass" type="number" value="1460"></label><label>Vitesse au rupteur rapport choisi<input id="gearTopSpeed" type="number" value="145"></label></div><h2>Configuration moteur</h2><div id="configOptions" class="optionGrid"></div><div class="grid4" style="margin-top:14px"><div class="stat"><small>Vitesse GPS</small><b id="liveSpeed">0</b><small>km/h</small></div><div class="stat"><small>Puissance</small><b id="liveHp">--</b><small>ch</small></div><div class="stat"><small>Couple</small><b id="liveTq">--</b><small>Nm</small></div><div class="stat"><small>Pic puissance</small><b id="liveBest">--</b><small>ch</small></div></div><div class="actions"><button class="primary" onclick="startRun()">Démarrer GPS</button><button class="danger" onclick="stopRun()">Arrêter</button><button class="secondary" onclick="saveRun()">Enregistrer</button><button class="secondary" onclick="downloadReport()">Rapport JSON</button></div></div></section>
 
-      <section id="run" class="screen">
-        <div class="run-head">
-          <h2>Run en cours</h2>
-          <span class="recording">● Enregistrement</span>
-        </div>
-        <div class="speed">
-          <span id="speed">0</span>
-          <small>km/h</small>
-          <b>GPS</b>
-        </div>
-        <div class="metrics">
-          <div class="metric"><small>Puissance</small><strong id="hp">--</strong><span>ch</span></div>
-          <div class="metric"><small>Couple</small><strong id="torque">--</strong><span>Nm</span></div>
-          <div class="metric"><small>0-100 km/h</small><strong id="t0100">--</strong><span>s</span></div>
-          <div class="metric"><small>0-400 m</small><strong id="t400live">--</strong><span>s</span></div>
-        </div>
-        <button class="danger" onclick="stopRun()">Arrêter le run</button>
-      </section>
+<section id="compare" class="page"><div class="panel"><h1>Avant / Après reprogrammation</h1><div class="grid3"><label>Modèle<select id="compareModel" onchange="renderCompare()"></select></label><label>Configuration<select id="compareConfig" onchange="renderCompare()"></select></label><label>Mode<select><option>Dernier run enregistré</option></select></label></div><div id="compareStats" class="grid4" style="margin-top:12px"></div><div class="grid2" style="margin-top:14px"><canvas id="compareChart" width="900" height="420"></canvas><div id="compareDetails"></div></div></div></section>
+<section id="stats" class="page"><div class="panel"><h1>Moyennes par modèle et configuration</h1><div class="tableWrap"><table><thead><tr><th>Modèle</th><th>Config</th><th>Avant ch</th><th>Après ch</th><th>Gain ch</th><th>Avant Nm</th><th>Après Nm</th><th>Gain Nm</th></tr></thead><tbody id="avgTable"></tbody></table></div></div></section>
+<section id="reports" class="page"><div class="panel"><h1>Rapports utilisateurs</h1><p>Pour recevoir les rapports, colle un endpoint Formspree, Getform ou Google Apps Script.</p><label>Endpoint réception<input id="endpoint" placeholder="https://formspree.io/f/xxxxxxx"></label><div class="actions"><button class="primary" onclick="saveEndpoint()">Sauver endpoint</button><button class="secondary" onclick="sendReport()">Envoyer dernier rapport</button><button class="secondary" onclick="exportCSV()">Exporter CSV</button><button class="danger" onclick="clearRuns()">Effacer local</button></div><div id="reportsList"></div><a class="site" href="https://damsreprog.fr" target="_blank">Ouvrir damsreprog.fr</a></div></section>
+<section id="settings" class="page"><div class="panel"><h1>Réglages GitHub Pages</h1><p>Nom de dépôt conseillé : <b>honda-dyno</b></p><p>Domaine conseillé : <b>honda.damsreprog.fr</b></p><p>DNS IONOS : CNAME <b>honda</b> → <b>katz38.github.io</b></p></div></section>
+</div>
 
-      <section id="results" class="screen">
-        <h2>Résultats du run</h2>
-        <div class="card selected">
-          <div class="icon">🚗</div>
-          <div>
-            <small id="resultDate">Aujourd’hui</small>
-            <strong id="resultCar">Civic FN1 2.2 i-CTDi</strong>
-            <span id="resultSpecs">140 ch</span>
-          </div>
-        </div>
-        <div class="metrics">
-          <div class="metric"><small>Puissance max</small><strong id="bestHp">--</strong><span>ch</span></div>
-          <div class="metric"><small>Couple max</small><strong id="bestTorque">--</strong><span>Nm</span></div>
-          <div class="metric"><small>Vitesse max</small><strong id="maxSpeed">--</strong><span>km/h</span></div>
-          <div class="metric"><small>0-100 km/h</small><strong id="t0100r">--</strong><span>s</span></div>
-          <div class="metric"><small>0-400 m</small><strong id="t400">--</strong><span>s</span></div>
-          <div class="metric"><small>0-1000 m</small><strong id="t1000">--</strong><span>s</span></div>
-        </div>
-        <div class="actions">
-          <button class="secondary" onclick="showScreen('graphs')">Voir graphiques</button>
-          <button class="primary" onclick="saveRun()">Enregistrer</button>
-        </div>
-      </section>
-
-      <section id="graphs" class="screen">
-        <h2>Graphiques</h2>
-        <div class="card">
-          <canvas id="chart" width="900" height="360"></canvas>
-        </div>
-        <div class="metrics">
-          <div class="metric"><small>Puissance max</small><strong id="graphHp">--</strong><span>ch</span></div>
-          <div class="metric"><small>Couple max</small><strong id="graphTorque">--</strong><span>Nm</span></div>
-        </div>
-      </section>
-
-      <section id="history" class="screen">
-        <h2>Historique</h2>
-        <div id="historyList" class="card"></div>
-      </section>
-
-      <section id="compare" class="screen">
-        <h2>Comparaison</h2>
-        <div class="card">
-          <canvas id="compareChart" width="900" height="360"></canvas>
-        </div>
-        <div id="compareList" class="card"></div>
-      </section>
-
-      <section id="models" class="screen">
-        <h2>Modèles Civic FN1</h2>
-        <div id="modelList" class="card"></div>
-        <div class="card">
-          <h3>Réglages</h3>
-          <label>Poids conducteur + carburant + bagages
-            <input id="driverMass" type="number" value="90">
-          </label>
-          <label>Masse totale calculée
-            <input id="totalMass" type="number" value="1460">
-          </label>
-          <label>Vitesse au rupteur sur le rapport utilisé
-            <input id="gearTopSpeed" type="number" value="145">
-          </label>
-        </div>
-      </section>
-
-      <section id="about" class="screen">
-        <h2>À propos</h2>
-        <div class="card about">
-          <div class="big-logo">CIVIC <span>DYNO FN1</span></div>
-          <p>Application de mesure de performances pour Honda Civic FN1 1.8 i-VTEC et 2.2 i-CTDi.</p>
-          <p>Développé pour Dams Reprog.</p>
-          <a class="primary link" href="https://damsreprog.fr" target="_blank">Ouvrir damsreprog.fr</a>
-          <p class="warning">Utilisation uniquement sur route privée ou fermée. Les valeurs sont des estimations GPS.</p>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <nav class="tabs">
-    <button class="tab active" data-screen="home" onclick="showScreen('home')">⌂<span>Accueil</span></button>
-    <button class="tab" data-screen="history" onclick="showScreen('history')">◷<span>Historique</span></button>
-    <button class="tab" data-screen="compare" onclick="showScreen('compare')">⌁<span>Comparer</span></button>
-    <button class="tab" data-screen="models" onclick="showScreen('models')">▰<span>Modèles</span></button>
-    <button class="tab" data-screen="about" onclick="showScreen('about')">ⓘ<span>À propos</span></button>
-  </nav>
-
-  <script src="app.js"></script>
+<script id="data" type="application/json">{"models": {"Civic FN1 1.8 i-VTEC": {"engine": "R18A2", "power": 140, "torque": 174, "mass": 1265, "fuel": "Essence", "redline": 6800, "gearTopSpeed": 150}, "Civic FN1 2.2 i-CTDi": {"engine": "N22A2", "power": 140, "torque": 340, "mass": 1370, "fuel": "Diesel", "redline": 4700, "gearTopSpeed": 145}, "Civic FN2 Type R": {"engine": "K20Z4", "power": 201, "torque": 193, "mass": 1320, "fuel": "Essence", "redline": 8200, "gearTopSpeed": 155}, "Civic EP3 Type R": {"engine": "K20A2", "power": 200, "torque": 196, "mass": 1204, "fuel": "Essence", "redline": 8200, "gearTopSpeed": 155}, "Civic FK2 Type R": {"engine": "K20C1", "power": 310, "torque": 400, "mass": 1382, "fuel": "Essence Turbo", "redline": 7000, "gearTopSpeed": 160}, "Civic FK8 Type R": {"engine": "K20C1", "power": 320, "torque": 400, "mass": 1390, "fuel": "Essence Turbo", "redline": 7000, "gearTopSpeed": 160}}, "configs": {"origine": "Origine / SP98", "stage1": "Stage 1", "stage2": "Stage 2", "e85": "E85", "cata": "Avec catalyseur", "decata": "Sans catalyseur / décata", "e85_decata": "E85 + décata", "stage2_e85": "Stage 2 + E85", "stage2_decata": "Stage 2 + décata", "stage2_e85_decata": "Stage 2 + E85 + décata"}, "multipliers": {"origine": 1.0, "stage1": 1.08, "stage2": 1.16, "e85": 1.1, "cata": 1.03, "decata": 1.08, "e85_decata": 1.14, "stage2_e85": 1.22, "stage2_decata": 1.24, "stage2_e85_decata": 1.3}}</script>
+<script>
+const DATA = JSON.parse(document.getElementById("data").textContent);
+const models = DATA.models, configs = DATA.configs, multipliers = DATA.multipliers;
+let selectedConfig = "origine", watchId=null, rows=[], currentRun=null, last=null, bestHp=0, bestTq=0, maxSpeed=0, runStart=null, t0100=null;
+const $=id=>document.getElementById(id), fmt=(v,d=1)=>Number.isFinite(v)?Number(v).toFixed(d):"--";
+function getRuns(){return JSON.parse(localStorage.getItem("hondaDynoPremiumStage2Runs")||"[]")} function setRuns(r){localStorage.setItem("hondaDynoPremiumStage2Runs",JSON.stringify(r.slice(0,500)))}
+function go(page,btn){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));$(page).classList.add("active");document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));if(btn)btn.classList.add("active");renderAll();if(page==="compare")renderCompare();if(page==="stats")renderStats();if(page==="reports")renderReports()}
+function init(){for(const name of Object.keys(models)){["mainModel","testModel","compareModel"].forEach(id=>{const o=document.createElement("option");o.value=name;o.textContent=name;$(id).appendChild(o)})}for(const [key,label] of Object.entries(configs)){["mainConfig","compareConfig"].forEach(id=>{const o=document.createElement("option");o.value=key;o.textContent=label;$(id).appendChild(o)})}$("configOptions").innerHTML=Object.entries(configs).map(([k,l])=>`<div id="opt_${k}" class="opt ${k==="origine"?"active":""}" onclick="setConfig('${k}')"><b>${l}</b><small>${k.includes("stage2")?"Performance max":k==="e85"?"Éthanol":k==="decata"?"Décata":""}</small></div>`).join("");$("endpoint").value=localStorage.getItem("hondaEndpoint")||"";seedDemo();renderAll();renderStats()}
+function seedDemo(){if(getRuns().length)return;const demo=[];Object.entries(models).forEach(([m,info])=>Object.keys(configs).forEach(cfg=>{let mult=multipliers[cfg];let before=info.power*(0.82+(cfg==="origine"?0:0.03));let after=info.power*mult;demo.push(fakeRun(m,cfg,"before",before,info.torque*.84,185,10.9));demo.push(fakeRun(m,cfg,"after",after,info.torque*mult,198,9.8))}));setRuns(demo)}
+function fakeRun(model,config,type,hp,tq,v,t100){return{id:Date.now()+Math.random(),date:new Date(Date.now()-Math.random()*8e8).toLocaleString(),model,config,type,typeLabel:type==="before"?"Avant reprog":"Après reprog",bestHp:hp,bestTq:tq,maxSpeed:v,t0100:t100,client:"Démo",comment:"Données exemple",rows:[{rpm:2000,hp:hp*.25,tq:tq*.5},{rpm:3000,hp:hp*.6,tq:tq*.8},{rpm:4200,hp:hp*.85,tq:tq},{rpm:5500,hp:hp,tq:tq*.85},{rpm:6800,hp:hp*.72,tq:tq*.62}]}}
+function setConfig(c){selectedConfig=c;document.querySelectorAll(".opt").forEach(o=>o.classList.remove("active"));$("opt_"+c).classList.add("active")}
+function pair(model,config){const r=getRuns().filter(x=>x.model===model&&x.config===config);return{before:r.filter(x=>x.type==="before").sort((a,b)=>b.id-a.id)[0],after:r.filter(x=>x.type==="after").sort((a,b)=>b.id-a.id)[0]}}
+function renderAll(){const m=$("mainModel").value||Object.keys(models)[0], c=$("mainConfig").value||"origine";const p=pair(m,c);renderBoxes(p.before,p.after);drawChart("chart",p.before,p.after);renderHomeGains(p.before,p.after)}
+function renderBoxes(before,after){$("beforeBox").innerHTML=box(before);$("afterBox").innerHTML=box(after);$("gainBox").innerHTML=gains(before,after)}
+function box(r){return r?`<div class="line"><span>Puissance max</span><b>${fmt(r.bestHp)} ch</b></div><div class="line"><span>Couple max</span><b>${fmt(r.bestTq)} Nm</b></div><div class="line"><span>Vitesse max</span><b>${fmt(r.maxSpeed,0)} km/h</b></div><div class="line"><span>0-100</span><b>${fmt(r.t0100,2)} s</b></div>`:"<p>Aucun run.</p>"}
+function gains(b,a){if(!b||!a)return"<p>Fais un run avant et après.</p>";return`<div class="line"><span>Puissance</span><b class="green">+${fmt(a.bestHp-b.bestHp)} ch</b></div><div class="line"><span>Couple</span><b class="green">+${fmt(a.bestTq-b.bestTq)} Nm</b></div><div class="line"><span>Vmax</span><b class="green">+${fmt(a.maxSpeed-b.maxSpeed,0)} km/h</b></div><div class="line"><span>0-100</span><b class="green">-${fmt(b.t0100-a.t0100,2)} s</b></div>`}
+function renderHomeGains(b,a){if(!b||!a)return;$("homeGainHp").textContent="+"+fmt(a.bestHp-b.bestHp)+" ch";$("homeGainTq").textContent="+"+fmt(a.bestTq-b.bestTq)+" Nm";$("homeGainV").textContent="+"+fmt(a.maxSpeed-b.maxSpeed,0)+" km/h";$("homeGain100").textContent="-"+fmt(b.t0100-a.t0100,2)+" s"}
+function renderCompare(){const p=pair($("compareModel").value,$("compareConfig").value);$("compareStats").innerHTML=`<div class="stat"><small>Gain ch</small><b class="green">${p.before&&p.after?"+"+fmt(p.after.bestHp-p.before.bestHp):"--"}</b></div><div class="stat"><small>Gain Nm</small><b class="green">${p.before&&p.after?"+"+fmt(p.after.bestTq-p.before.bestTq):"--"}</b></div><div class="stat"><small>Gain Vmax</small><b class="green">${p.before&&p.after?"+"+fmt(p.after.maxSpeed-p.before.maxSpeed,0):"--"}</b></div><div class="stat"><small>Gain 0-100</small><b class="green">${p.before&&p.after?"-"+fmt(p.before.t0100-p.after.t0100,2):"--"}</b></div>`;$("compareDetails").innerHTML=`<div class="box"><h3>AVANT</h3>${box(p.before)}</div><div class="box after"><h3>APRÈS</h3>${box(p.after)}</div>`;drawChart("compareChart",p.before,p.after)}
+function renderStats(){const rows=[];Object.keys(models).forEach(m=>Object.keys(configs).forEach(c=>{const p=pair(m,c);if(p.before||p.after)rows.push({m,c,b:p.before,a:p.after})}));$("avgTable").innerHTML=rows.map(r=>`<tr><td>${r.m}</td><td>${configs[r.c]}</td><td>${fmt(r.b?.bestHp)}</td><td>${fmt(r.a?.bestHp)}</td><td class="green">${r.b&&r.a?"+"+fmt(r.a.bestHp-r.b.bestHp):"--"}</td><td>${fmt(r.b?.bestTq)}</td><td>${fmt(r.a?.bestTq)}</td><td class="green">${r.b&&r.a?"+"+fmt(r.a.bestTq-r.b.bestTq):"--"}</td></tr>`).join("")}
+function startRun(){rows=[];last=null;bestHp=0;bestTq=0;maxSpeed=0;t0100=null;runStart=null;if(!navigator.geolocation)return alert("GPS non disponible");$("gpsStatus").textContent="GPS actif";watchId=navigator.geolocation.watchPosition(sample,e=>alert("Erreur GPS: "+e.message),{enableHighAccuracy:true,maximumAge:0,timeout:5000})}
+function stopRun(){if(watchId!==null)navigator.geolocation.clearWatch(watchId);watchId=null;$("gpsStatus").textContent="GPS prêt";currentRun=buildRun();alert("Run arrêté. Tu peux enregistrer ou exporter.")}
+function sample(pos){const t=performance.now()/1000,s=Math.max(0,pos.coords.speed||0);if(!last){last={t,s};return}const dt=t-last.t;if(dt<=.15)return;let acc=(s-last.s)/dt;if(!Number.isFinite(acc))acc=0;const mass=+$("mass").value||1460,kmh=s*3.6;const p=Math.max(0,(mass*acc+mass*9.81*.012+.5*1.225*.72*s*s)*s);const hp=p/745.7/.84;const rpm=Math.max(900,Math.min(8500,kmh*(6800/(+$("gearTopSpeed").value||145))));let tq=hp*745.7/(rpm*2*Math.PI/60);if(!Number.isFinite(tq))tq=0;bestHp=Math.max(bestHp,hp);bestTq=Math.max(bestTq,tq);maxSpeed=Math.max(maxSpeed,kmh);if(runStart===null&&kmh>5)runStart=t;if(runStart&&kmh>=100&&!t0100)t0100=t-runStart;rows.push({rpm,hp,tq,kmh,time:t});$("liveSpeed").textContent=fmt(kmh,0);$("liveHp").textContent=fmt(hp);$("liveTq").textContent=fmt(tq);$("liveBest").textContent=fmt(bestHp);last={t,s}}
+function buildRun(){return{id:Date.now(),date:new Date().toLocaleString(),model:$("testModel").value,config:selectedConfig,type:$("testType").value,typeLabel:$("testType").value==="before"?"Avant reprog":"Après reprog",client:$("client").value,comment:$("comment").value,bestHp,bestTq,maxSpeed,t0100,rows}}
+function saveRun(){if(!currentRun)currentRun=buildRun();const r=getRuns();r.unshift(currentRun);setRuns(r);alert("Run enregistré");renderAll();renderStats()}
+function downloadReport(){if(!currentRun)currentRun=buildRun();download("rapport_honda_"+currentRun.model.replaceAll(" ","_")+"_"+currentRun.config+"_"+currentRun.type+".json",JSON.stringify(currentRun,null,2),"application/json")}
+function renderReports(){$("reportsList").innerHTML=getRuns().map(r=>`<div class="line"><span><b>${r.model}</b><br><small>${r.date} • ${configs[r.config]} • ${r.typeLabel}</small></span><b>${fmt(r.bestHp)} ch</b></div>`).join("")}
+function exportCSV(){const csv="date,model,config,type,client,bestHp,bestTq,maxSpeed,t0100\n"+getRuns().map(r=>[r.date,r.model,r.config,r.type,r.client,fmt(r.bestHp),fmt(r.bestTq),fmt(r.maxSpeed),fmt(r.t0100,2)].map(v=>`"${String(v||"").replaceAll('"','""')}"`).join(",")).join("\n");download("rapports_honda_dyno_stage2.csv",csv,"text/csv")}
+function saveEndpoint(){localStorage.setItem("hondaEndpoint",$("endpoint").value.trim());alert("Endpoint sauvegardé")}
+async function sendReport(){const ep=$("endpoint").value.trim()||localStorage.getItem("hondaEndpoint")||"";if(!ep)return alert("Ajoute un endpoint.");const report=currentRun||buildRun();try{const res=await fetch(ep,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(report)});if(!res.ok)throw new Error(res.status);alert("Rapport envoyé")}catch(e){alert("Envoi impossible: "+e.message)}}
+function clearRuns(){if(confirm("Effacer tous les runs locaux ?")){localStorage.removeItem("hondaDynoPremiumStage2Runs");seedDemo();renderAll();renderStats();renderReports()}}
+function download(name,content,type){const b=new Blob([content],{type}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=name;a.click()}
+function drawChart(id,before,after){const c=$(id),ctx=c.getContext("2d"),w=c.width,h=c.height;ctx.clearRect(0,0,w,h);ctx.strokeStyle="rgba(255,255,255,.12)";for(let i=0;i<6;i++){let y=i*h/5;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke()}line(ctx,before?.rows?.map(r=>r.hp)||[40,80,110,125,115],w,h,"#60a5fa",360);line(ctx,after?.rows?.map(r=>r.hp)||[50,95,130,145,125],w,h,"#ef4444",360);line(ctx,before?.rows?.map(r=>r.tq/2.5)||[60,90,120,100,70],w,h,"#3b82f6",360);line(ctx,after?.rows?.map(r=>r.tq/2.5)||[70,115,140,120,85],w,h,"#22c55e",360)}
+function line(ctx,data,w,h,color,maxBase){if(!data.length)return;const max=Math.max(maxBase,...data);ctx.strokeStyle=color;ctx.lineWidth=4;ctx.beginPath();data.forEach((v,i)=>{const x=i*w/Math.max(1,data.length-1),y=h-(v/max)*(h-28)-14;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.stroke()}
+init();
+</script>
 </body>
 </html>
